@@ -39,7 +39,7 @@ var butters = svg.selectAll(".butters")
 // Make it so that the enemies move to a new random location every second.
 
 var loop = function(cartman) {
-  cartman.transition()
+  cartman.transition().duration(750)
   .attr("x", function() { return 800 * Math.random() } )
   .attr("y", function() { return 800 * Math.random() } )
   .each("end", function() { loop(d3.select(this)); });
