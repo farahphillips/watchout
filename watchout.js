@@ -44,9 +44,15 @@ var loop = function(cartman) {
 
 loop(cartman);
 
-// Detect when a enemy touches you.
+// scoreboard
+var score = 0;
+var highScore = 0;
+var scoreKeeper = function() {
+  score = score+1;
+  highScore = Math.max(score, highScore);
+  d3.select(".high span").text(highScore);
+  d3.select(".current span").text(score);
+};
+setInterval(scoreKeeper, 250);
 
-
-
-
-// Keep track of the user's score, and display it
+// collisions
