@@ -1,5 +1,3 @@
-var numArr = [1, 2, 3];
-
 var body = d3.selectAll("body")
           .append("svg")
           .attr("class", "box")
@@ -8,7 +6,7 @@ var body = d3.selectAll("body")
 
 // enemy cartman elements
 var cartman = body.selectAll(".cartman")
-          .data(numArr)
+          .data([1, 2, 3, 4, 5, 6])
           .enter()
           .append("svg:image")
           .attr("xlink:href", "cartman.png")
@@ -40,7 +38,7 @@ body.on("mousemove", function() {
 
 // move enemy cartmans
 var loop = function(cartman) {
-  cartman.transition().duration(750)
+  cartman.transition().duration(750).ease("linear")
   .attr("x", function() { return 1000 * Math.random() } )
   .attr("y", function() { return 450 * Math.random() } )
   .each("end", function() { loop(d3.select(this)); });
@@ -69,7 +67,7 @@ var detect = function() {
   cartman.each(function() {
     var enemy = d3.select(this);
     var a = butters.attr("x") - enemy.attr("x");
-    var b = butters.attr("y") - enemy.attr("x");
+    var b = butters.attr("y") - enemy.attr("y");
     var c = a + b;
     if(c < 100) {
       collision = true;
